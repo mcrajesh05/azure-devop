@@ -24,11 +24,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
+      - name: Run a Python script
+       matrix:
+        Python38:
+          python.version: '3.8'
+        Python39:
+          python.version: '3.9'
+        Python310:
+          python.version: '3.10'
+        
       # Runs a set of commands using the runners shell
       - name: Run a install script
         run: make install
-        
+      
       # Runs a set of commands using the runners shell
       - name: Run a lint command
         run: make lint
